@@ -7,38 +7,17 @@
 
     <div class="menu">
       <el-menu :collapse="useSettingStore().isFold" background-color="#3b556e" text-color="#b7bdc5">
-        <!-- 遍历整个菜单 -->
-        <template v-for="item in userMenus" :key="item.rule">
-          <el-sub-menu :index="item.rule">
-            <template #title>
-              <el-icon><location /></el-icon>
-              <span>{{ item.name }}</span>
-            </template>
-
-            <div v-if="item.children != null">
-              <template v-for="subItem in item.children" :key="subItem.rule">
-                <el-menu-item @click="routerEnter(subItem.path)">
-                  {{ subItem.name }}
-                </el-menu-item>
-              </template>
-            </div>
-          </el-sub-menu>
-        </template>
+        <subMenu :menuList="userMenus"></subMenu>
       </el-menu>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import router from '@/router'
 import useLoginStore from '@/store/login/login'
 import useSettingStore from '@/store/setting/setting'
-
+import subMenu from '../subMenu/subMenu.vue'
 const userMenus: any = useLoginStore().userMenu
-function routerEnter(path: string) {
-  console.log(path)
-  router.push(path)
-}
 console.log(userMenus)
 </script>
 
