@@ -10,13 +10,17 @@ class Cache {
     this.storage = CancheType.Local === type ? localStorage : sessionStorage
   }
   setCache(key: string, value: any) {
-    this.storage.setItem(key, JSON.stringify(value))
+    if (typeof value == 'string') {
+      this.storage.setItem(key, value)
+    } else {
+      this.storage.setItem(key, JSON.stringify(value))
+    }
   }
 
   getCache(key: string) {
     const value = this.storage.getItem(key)
     if (value) {
-      return JSON.parse(value)
+      return typeof key === 'string' ? value : JSON.parse(value)
     }
   }
 

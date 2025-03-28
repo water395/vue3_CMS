@@ -17,7 +17,8 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     // 可以在这里添加一些公共的请求头信息，例如 token
-    const token = localStorage.getItem('token')
+    const token: string = localStorage.getItem('token') ?? ''
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }

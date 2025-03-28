@@ -5,9 +5,9 @@ import './assets/css/index.less'
 
 // import ElementPlus from 'element-plus'
 // import 'element-plus/dist/index.css'
-
 import router from './router'
 import pinia from './store'
+
 import '@/permission'
 
 import { createApp } from 'vue'

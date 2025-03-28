@@ -1,11 +1,11 @@
 <template>
-  <div class="main">
-    <button @click="userLoginStore().outLogin">退出登录</button>
+  <div class="common-layout">
+    <Layout />
   </div>
 </template>
 
 <script setup lang="ts">
-import userLoginStore from '@/store/login/login'
+import Layout from '@/components/layout/layoutCpn.vue'
 </script>
 
 <style lang="less" scoped></style>

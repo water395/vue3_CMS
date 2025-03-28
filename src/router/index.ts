@@ -1,6 +1,7 @@
+import { getLocalViewRoute } from '@/utils/router'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-const common = [
+const commonRouter = [
   {
     path: '/',
     redirect: '/main'
@@ -11,6 +12,7 @@ const common = [
   },
   {
     path: '/main',
+    name: 'main',
     component: () => import('@/views/main/mainView.vue')
   },
   {
@@ -19,10 +21,12 @@ const common = [
   }
 ]
 
+export const viewRoute = getLocalViewRoute()
+
 const router = createRouter({
   history: createWebHashHistory(),
   //映射关系:path => component
-  routes: common
+  routes: commonRouter
 })
 
 export default router

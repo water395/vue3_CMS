@@ -2,6 +2,7 @@
 import router from './router'
 import 'element-plus/theme-chalk/el-message.css'
 import { LocalCache } from './utils/cache'
+import useLoginStore from './store/login/login'
 
 // 导航守卫
 // 参数to（跳转的位置）/from 从哪里来
@@ -13,8 +14,17 @@ router.beforeEach((to, from, next: any) => {
   if (hasToken) {
     if (to.path === '/login') {
       next({ path: to.query.redirect || '/' })
+    } else {
+      if (useLoginStore().isGETPermission) {
+        next()
+      } else {
+        useLoginStore()
+          .getUserPermission()
+          .then(() => {
+            next({ ...to })
+          })
+      }
     }
-    next()
   } else {
     next()
   }
