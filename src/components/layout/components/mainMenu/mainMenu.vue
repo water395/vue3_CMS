@@ -6,7 +6,12 @@
     </div>
 
     <div class="menu">
-      <el-menu :collapse="useSettingStore().isFold" background-color="#3b556e" text-color="#b7bdc5">
+      <el-menu
+        :default-active="defalutRoute"
+        :collapse="useSettingStore().isFold"
+        background-color="#3b556e"
+        text-color="#b7bdc5"
+      >
         <subMenu :menuList="userMenus"></subMenu>
       </el-menu>
     </div>
@@ -17,8 +22,12 @@
 import useLoginStore from '@/store/login/login'
 import useSettingStore from '@/store/setting/setting'
 import subMenu from '../subMenu/subMenu.vue'
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 const userMenus: any = useLoginStore().userMenu
-console.log(userMenus)
+
+const route = useRoute()
+const defalutRoute = ref(route.path)
 </script>
 
 <style lang="less" scoped>
@@ -31,25 +40,6 @@ console.log(userMenus)
     border-right: none;
     user-select: none;
     // background: rgb(57, 89, 136);
-  }
-
-  .el-sub-menu {
-    .el-menu-item {
-      // background-color: rgb(32, 63, 109);
-      padding-left: 50px !important;
-    }
-
-    .el-menu-item:hover {
-      color: white;
-    }
-    .el-menu-item.is-active {
-      background-color: rgb(127, 131, 136);
-      color: white;
-    }
-  }
-
-  .el-sub-menu {
-    background: #32485e;
   }
 }
 

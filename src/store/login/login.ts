@@ -45,7 +45,7 @@ const useLoginStore = defineStore('login', {
         this.token = loginResult.token
         LocalCache.setCache(TOKEN, this.token)
         this.getUserPermission()
-        router.push('/').then(() => {
+        router.push('/main/baseInfo').then(() => {
           if (account.isRemPwd) {
             LocalCache.setCache('loginInfo', JSON.stringify(account))
           } else {
@@ -81,11 +81,14 @@ const useLoginStore = defineStore('login', {
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         res && router.addRoute('main', res)
       })
+
+      console.log(router.getRoutes(), '已经注册的路由')
     },
 
     async outLogin() {
       try {
         LocalCache.removeCache(TOKEN)
+
         router.push('/login').then(() => {
           ElMessage.success('退出成功')
         })

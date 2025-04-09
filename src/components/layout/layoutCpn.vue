@@ -7,9 +7,11 @@
 
       <el-container>
         <el-header height="40px"><MainHeader /></el-header>
-        <!-- <el-header height="40px"><MainHeader /></el-header> -->
         <el-main>
-          <router-view></router-view>
+          <routerTab></routerTab>
+          <div class="mainView">
+            <router-view></router-view>
+          </div>
         </el-main>
       </el-container>
     </el-container>
@@ -20,6 +22,7 @@
 import MainMenu from './components/mainMenu/mainMenu.vue'
 import MainHeader from './components/mainHeader/mainHeader.vue'
 import useSettingStore from '@/store/setting/setting'
+import routerTab from './components/routerTab/routerTab.vue'
 </script>
 
 <style lang="less" scoped>
@@ -29,11 +32,17 @@ import useSettingStore from '@/store/setting/setting'
   .el-aside {
     background: #273849;
     cursor: pointer;
-    transition: width 0.5s linear;
+    transition: width 0.3s linear;
   }
 
   .el-main {
-    background-color: rgb(192, 190, 190);
+    background-color: rgb(243, 242, 242);
+    margin: 0;
+    padding: 0;
+
+    .mainView {
+      padding: 10px;
+    }
   }
 }
 </style>

@@ -8,7 +8,7 @@ export function buildTreeEfficient(items: any[]) {
     itemMap[item.id] = { ...item, children: [] }
   })
 
-  console.log(itemMap)
+  // console.log(itemMap)
 
   //构建树结构
   items.forEach((item: any) => {
@@ -42,6 +42,17 @@ export function traverseTree(id: any, targetArray: any[]): any | null {
   }
 
   return null
+}
+
+export function mapPathToBreadcrumbs(path: any, userMenus: any[]): any | null {
+  const breadcrumbs: any[] = []
+  const targetRoute = traverseTree(path, userMenus)
+
+  if (targetRoute) {
+    breadcrumbs.push(targetRoute)
+  }
+
+  return breadcrumbs
 }
 
 //获取项目view路由表

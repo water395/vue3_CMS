@@ -7,13 +7,17 @@ import useLoginStore from './store/login/login'
 // 导航守卫
 // 参数to（跳转的位置）/from 从哪里来
 const TOKEN = 'token'
+const WHITELIST = ['/login']
 router.beforeEach((to, from, next: any) => {
   const hasToken = LocalCache.getCache(TOKEN)
-  console.log('路由跳转', to, from)
+  // console.log('路由跳转', to, from)
   //判断是否有token
+  // console.log(hasToken)
+
   if (hasToken) {
     if (to.path === '/login') {
-      next({ path: to.query.redirect || '/' })
+      next()
+      // next({ path: to.query.redirect || '/' })
     } else {
       if (useLoginStore().isGETPermission) {
         next()
@@ -26,6 +30,10 @@ router.beforeEach((to, from, next: any) => {
       }
     }
   } else {
-    next()
+    if (WHITELIST.includes(to.path)) {
+      next()
+    } else {
+      next('/login')
+    }
   }
 })

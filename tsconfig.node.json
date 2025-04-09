@@ -11,7 +11,7 @@
   "compilerOptions": {
     "noEmit": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-    "target": "ES6",
+    // "target": "ES6",
     // "module": "commonjs",
     "module": "ESNext",
     "moduleResolution": "Bundler",

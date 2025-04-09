@@ -2,6 +2,7 @@ import axios from 'axios'
 import { BASE_URL, TIME_OUT, ContentType } from '../config'
 import { ElMessage } from 'element-plus'
 import 'element-plus/theme-chalk/el-message.css'
+import useLoginStore from '@/store/login/login'
 
 axios.defaults.headers.post['Content-Type'] = ContentType
 // axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
@@ -52,6 +53,7 @@ service.interceptors.response.use(
       switch (error.response.status) {
         case 401:
           errorMessage = '未授权，请重新登录'
+          useLoginStore().outLogin()
           // 可以在这里添加跳转到登录页的逻辑
           break
         case 404:

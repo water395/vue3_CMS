@@ -22,8 +22,7 @@ export default defineConfigWithVueTs(
   skipFormatting,
   {
     rules: {
-      '@typescript-eslint/no-explicit-any': 'off', // 禁用该规则，允许使用 any 类型
-      'no-unused-expressions': ['error', { allowShortCircuit: true }]
+      '@typescript-eslint/no-explicit-any': 'off' // 禁用该规则，允许使用 any 类型
     }
   }
 )
